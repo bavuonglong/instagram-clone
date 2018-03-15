@@ -45,4 +45,15 @@
         android:layout_centerVertical="true"
         android:onClick="signUp"
         android:text="Sign Up" />
+
+    <TextView
+        android:id="@+id/tvChangeSignUpMode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/btnSignUp"
+        android:layout_alignBottom="@+id/btnSignUp"
+        android:layout_marginStart="15dp"
+        android:layout_toEndOf="@+id/btnSignUp"
+        android:text="or Login"
+        android:textColor="@android:color/holo_blue_light" />
 </RelativeLayout>
