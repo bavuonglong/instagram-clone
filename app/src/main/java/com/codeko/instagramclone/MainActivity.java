@@ -1,5 +1,6 @@
 package com.codeko.instagramclone;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -50,6 +51,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         imgLogo = findViewById(R.id.imgLogo);
         imgLogo.setOnClickListener(this);
 
+        if (ParseUser.getCurrentUser() != null) {
+            showUserList();
+        }
+
         ParseAnalytics.trackAppOpenedInBackground(getIntent());
     }
 
@@ -65,7 +70,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     @Override
                     public void done(ParseException e) {
                         if (e == null) {
-                            Log.d("sign up", "successful");
+                            showUserList();
                         } else {
                             Toast.makeText(MainActivity.this, e.getMessage(), Toast.LENGTH_LONG).show();
                         }
@@ -76,7 +81,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     @Override
                     public void done(ParseUser user, ParseException e) {
                         if (user != null) {
-                            Log.d("log in", "successful");
+                            showUserList();
                         } else {
                             Toast.makeText(MainActivity.this, e.getMessage(), Toast.LENGTH_LONG).show();
                         }
@@ -116,5 +121,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             signUp(view);
         }
         return false;
+    }
+
+    public void showUserList() {
+        Intent intent = new Intent(getApplicationContext(), UserListActivity.class);
+        startActivity(intent);
     }
 }
